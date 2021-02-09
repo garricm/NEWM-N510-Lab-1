@@ -1,0 +1,22 @@
+.icon-block {
+  padding: 0 15px;
+}
+.icon-block .material-icons {
+	font-size: inherit;
+}
+
+.pothole-image-btn {
+  background-color: #d32f2f;
+}
+
+.pothole-image-btn:hover {
+  background-color: #b71c1c;
+}
+
+.submit-btn {
+  background-color: #d32f2f;
+}
+
+.submit-btn:hover {
+  background-color: #b71c1c;
+}
