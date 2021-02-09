@@ -130,7 +130,7 @@
                         <li><a class="orange-text text-lighten-3" target="_blank"
                                 href="https://www.linkedin.com/in/miguel-angel-llamas-estrada">Miguel Angel Llamas
                                 Estrada</a></li>
-                        <li><a class="orange-text text-lighten-3" target="_blank" href="#!">Shruti</a></li>
+                        <li><a class="orange-text text-lighten-3" target="_blank" href="#!">Shruti Devulapalli</a></li>
                         <li><a class="orange-text text-lighten-3" target="_blank"
                                 href="https://www.linkedin.com/in/garric/">Garric Mathias</a></li>
                     </ul>
