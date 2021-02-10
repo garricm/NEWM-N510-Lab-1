@@ -1,6 +1,7 @@
 (function ($) {
   $(document).ready(() => {
     $('#description').characterCounter();
+    $('#street_address').characterCounter();
   });
 
   $('#isAnonymous').change((e) => {
