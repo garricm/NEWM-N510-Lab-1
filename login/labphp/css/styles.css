@@ -1,0 +1,111 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin-bottom: 16px;
+}
+
+nav {
+  height: 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: darkred;
+}
+.links {
+  display: flex;
+  width: 100%;
+}
+nav .links a {
+  margin-left: 175px;
+  margin-right: 122px;
+  min-height: 45px;
+  display: flex;
+  text-decoration: none;
+  align-items: center;
+  justify-content: space-around;
+  color: wheat;
+}
+
+nav .logo {
+  padding: 100px;
+  min-height: 10px;
+  width: 200px;
+  background-color: green;
+  margin-right: 60px;
+}
+
+.logo {
+  height: 10px;
+  width: 10px;
+  background-color: darkblue;
+}
+section {
+  height: 100%;
+}
+
+a:hover {
+  color: red;
+}
+.content {
+  padding-top: 50px;
+  height: 70%;
+}
+h2 {
+  display: flex;
+  color: brown;
+}
+h3 {
+  color: crimson;
+}
+.logininfo {
+  margin-left: 175px;
+  margin-right: 175px;
+  padding: 100px;
+  height: 100%;
+  background-color: wheat;
+  color: brown;
+}
+input[type="text"] {
+  transition: width 0.4s ease-in-out;
+}
+
+input[type="button"],
+input[type="submit"],
+input[type="reset"] {
+  background-color: darkred;
+  border: none;
+  color: wheat;
+  padding: 8px 15px;
+  text-decoration: none;
+  margin: 4px 2px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+footer {
+  height: 120px;
+  background-color: darkred;
+}
+.footText {
+  margin-left: 175px;
+  margin-right: 175px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 75px;
+  margin-top: 77px;
+  padding-top: 50px;
+  color: wheat;
+}
