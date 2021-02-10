@@ -31,7 +31,7 @@ CREATE TABLE `pothole` (
 ) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4
 ```
 
-2. Update the following parameters in [dbconnections.php](https://github.com/garricm/SPOTHOLE/blob/master/sql/setup.sql)
+2. Update the following parameters in [dbconnections.php](https://github.com/garricm/SPOTHOLE/blob/master/dbconnection.php)
 
 ```php
 $server = "db_url";
