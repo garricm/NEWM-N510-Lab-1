@@ -14,11 +14,11 @@
 <body>
     <nav class="red darken-4" role="navigation">
         <div class="nav-wrapper container">
-            <a id="logo-container" href="#" class="brand-logo left">Fix My Pothole</a>
+            <a id="logo-container" href="index.html" class="brand-logo left">Fix My Pothole</a>
             <ul class="right">
                 <li>
-                    <a href="#">
-                        Login
+                    <a href="list-potholes.php">
+                        List
                     </a>
                 </li>
             </ul>
@@ -32,7 +32,7 @@
                 <h3 class="header center">Report a Pothole</h3>
             </div>
             <div class="row">
-                <form class="col s12" action="index.php" method="POST">
+                <form class="col s12" action="report-pothole.php" method="POST">
                     <!-- Pothole Location -->
                     <div class="row">
                         <div class="input-field col s12">
@@ -46,6 +46,7 @@
                             <input name="city" required="" aria-required="true" id="city" type="text" class="validate">
                             <label for="city">City</label>
                         </div>
+                        <!-- TODO: Change to Dropdown -->
                         <div class="input-field col s12 m4">
                             <i class="material-icons prefix">my_location</i>
                             <input name="state" required="" aria-required="true" id="state" type="text"
@@ -111,7 +112,7 @@
                     <!-- Buttons -->
                     <div class="row">
                         <label style="padding-left: 15px;">
-                            <input type="checkbox" name="isAnonymous" id="isAnonymous" class="filled-in" />
+                            <input type="checkbox" name="isAnonymous" id="isAnonymous" value="anonymous" class="filled-in" />
                             <span>Report Anonymously</span>
                         </label>
                         <button class="btn waves-effect waves-light submit-btn right" type="submit" name="action">Submit
