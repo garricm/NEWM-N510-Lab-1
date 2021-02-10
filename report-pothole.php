@@ -106,7 +106,7 @@ $sql_insert = "INSERT INTO pothole (`city`, `state`, `zipCode`, `description`, `
         </div>
         <div class="footer-copyright">
             <div class="container">
-                Lab Assignment - NEWM-N-510 <a class="orange-text text-lighten-3" target="_blank" href="https://github.com/garricm/NEWM-N510-Lab-1">Source Code</a>
+                Lab Assignment - NEWM-N-510 <a class="orange-text text-lighten-3" target="_blank" href="https://github.com/garricm/SPOTHOLE/">Source Code</a>
             </div>
         </div>
     </footer>
