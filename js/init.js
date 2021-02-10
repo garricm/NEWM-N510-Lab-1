@@ -1,11 +1,13 @@
 (function ($) {
-  $(function () {
-
-    $('.sidenav').sidenav();
-
-  }); // end of document ready
-
-  $(document).ready(function () {
-    $('input#input_text, textarea#textarea2').characterCounter();
+  $(document).ready(() => {
+    $('#description').characterCounter();
   });
-})(jQuery); // end of jQuery name space
+
+  $('#isAnonymous').change((e) => {
+    if ($(e.target).prop("checked") == true) {
+      $("#user-info").hide();
+    } else {
+      $("#user-info").show();
+    }
+  });
+})(jQuery);

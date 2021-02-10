@@ -20,3 +20,17 @@
 .submit-btn:hover {
   background-color: #b71c1c;
 }
+
+.input-field
+.prefix.active {
+  color: #d32f2f;
+}
+
+[type="checkbox"].filled-in:checked + span:not(.lever):after {
+  top: 0;
+  width: 20px;
+  height: 20px;
+  border: 2px solid #d32f2f;
+  background-color: #d32f2f;
+  z-index: 0;
+}
