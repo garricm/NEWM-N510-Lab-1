@@ -46,7 +46,7 @@ $sql_insert = "INSERT INTO pothole (`city`, `state`, `zipCode`, `description`, `
 <body>
     <nav class="red darken-4" role="navigation">
         <div class="nav-wrapper container">
-            <a id="logo-container" href="index.html" class="brand-logo left">Fix My Pothole</a>
+            <a id="logo-container" href="index.html" class="brand-logo left">Spothole</a>
             <ul class="right">
                 <li>
                     <a href="index.html">
