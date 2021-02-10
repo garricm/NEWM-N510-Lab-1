@@ -22,7 +22,7 @@ $last_name = $_POST["last_name"];
 $email = $_POST["email"];
 $phone = $_POST["telephone"];
 
-$last_updated = time();
+$last_updated = date("Y-m-d H:i:s");
 
 if (isset($_POST[`isAnonymous`])) {
     $isAnonymous = "Y";
