@@ -21,7 +21,7 @@
 
     <?php
 
-    include 'dbconnection.php';
+    include '../dbconnection.php';
     $email = $_POST['email'];
     $password = $_POST['password'];
 

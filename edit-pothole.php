@@ -1,11 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
-
 <?php
 include 'dbconnection.php';
-$sql = "select * from `pothole` order by timestamp desc";
-$result = mysqli_query($conn, $sql);
+
+$potholeId = $_POST["potholeId"];
+$status = $_POST["status"];
+
+$sql = "update `pothole` set status='" . $status . "' where potholeId=" . $potholeId;
+
 ?>
+
+<!DOCTYPE html>
+<html lang="en">
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -16,10 +20,15 @@ $result = mysqli_query($conn, $sql);
     <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection" />
     <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection" />
 
+
     <style>
-        .secondary-content {
-            float: right;
-            color: #000;
+        .section {
+            padding-top: 1rem;
+            padding-bottom: 1rem;
+            padding: 2.5rem;
+            margin-top: 1rem;
+            background: #fffffb;
+            border: 1px solid;
         }
     </style>
 </head>
@@ -30,8 +39,8 @@ $result = mysqli_query($conn, $sql);
             <a id="logo-container" href="index.html" class="brand-logo left">Spothole</a>
             <ul class="right">
                 <li>
-                    <a href="index.html">
-                        Home
+                    <a href="list-potholes.php">
+                        List
                     </a>
                 </li>
             </ul>
@@ -42,48 +51,20 @@ $result = mysqli_query($conn, $sql);
     <div class="container">
         <div class="section" style="min-height: 300px;">
             <div>
-                <h3 class="header center">List - Reported Potholes</h3>
-            </div>
-
-            <ul class="collection">
                 <?php
 
-                if (mysqli_num_rows($result) > 0) {
-                    // output data of each row
-                    while ($row = mysqli_fetch_assoc($result)) {
-                        // var_dump($row);
-                        $color = "red";
-
-                        if ($row['status'] == "in-progress") {
-                            $color = "yellow";
-                        } else if ($row['status'] == "complete") {
-                            $color = "green";
-                        }
+                if ($conn->query($sql) === TRUE) {
                 ?>
-                        <li class="collection-item avatar">
-                            <i class="material-icons circle <?php echo $color ?>" style="margin-top: 10px;">filter_tilt_shift</i>
-                            <span class="title"><?php echo $row['streetAddress'] ?></span>
-                            <p><?php echo $row['zipCode'] ?> <br>
-                                Status - <b><?php echo strtoupper($row['status']) ?></b>
-                            </p>
-                            <a href="view-pothole.php?id=<?php echo $row["potholeId"] ?>" class="secondary-content" style="margin-top: 10px;margin-right: 20px;">
-                                <span style="font-weight: bold; font-size: 13px;">Modify</span>
-                                <!-- <a class="waves-effect waves-light btn">button</a> -->
-
-                                <!-- <i class="material-icons">create</i> -->
-                            </a>
-                        </li>
-                    <?php
-                    }
+                    <h3 class="header center">Pothole record updated</h3>
+                <?php
                 } else {
-                    ?>
 
-                    <h5 style="text-align: center;">No records found..</h5>
-
-                <?php
+                    echo "Error: " . $sql . "<br>" . $conn->error;
                 }
+
+                $conn->close();
                 ?>
-            </ul>
+            </div>
         </div>
         <br><br>
     </div>
