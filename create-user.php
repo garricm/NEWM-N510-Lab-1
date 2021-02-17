@@ -133,7 +133,7 @@ if (!empty($_POST)) {
                     </div>
                 </div>
                 <div class="card-action right-align">
-                    <a class="btn-flat waves-effect" style="float: left; color: #000;" href="index.php">Login</a>
+                    <a class="btn-flat waves-effect" style="float: left; color: #000;" href="index.php">Back to Login</a>
                     <input type="reset" id="reset" class="btn-flat grey-text waves-effect">
                     <button class="btn red darken-4 waves-effect waves-light create-user-btn">Create User</button>
                 </div>
