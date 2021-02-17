@@ -90,12 +90,14 @@ if (!empty($_POST)) {
                     <span class="card-title">Login</span>
                     <div class="row">
                         <div class="input-field col s12">
-                            <label for="email">Email</label>
+                            <i class="material-icons prefix">email</i>
                             <input type="email" class="validate" name="username" id="username" />
+                            <label for="email">Email</label>
                         </div>
                         <div class="input-field col s12">
-                            <label for="password">Password</label>
+                            <i class="material-icons prefix">enhanced_encryption</i>
                             <input type="password" class="validate" name="password" id="password" />
+                            <label for="password">Password</label>
                         </div>
                         <?php if ($msg != "") { ?>
                             <div class="col s12" style="margin-bottom: -20px;">
