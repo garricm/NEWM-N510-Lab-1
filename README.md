@@ -33,6 +33,9 @@ CREATE TABLE `pothole` (
 
 CREATE TABLE `users` (
  `userID` int(19) NOT NULL AUTO_INCREMENT,
+ `firstName` varchar(255) NOT NULL,
+ `lastName` varchar(255) NOT NULL,
+ `telephone` varchar(100) NOT NULL,
  `username` varchar(255) NOT NULL,
  `password` varchar(255) NOT NULL,
  `status` varchar(100) NOT NULL,
