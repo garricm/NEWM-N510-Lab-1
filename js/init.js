@@ -11,4 +11,8 @@
       $("#user-info").show();
     }
   });
+
+  $(document).ready(function () {
+    $('select').formSelect();
+  });
 })(jQuery);

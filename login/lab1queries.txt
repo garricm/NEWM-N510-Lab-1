@@ -1,0 +1,26 @@
+CREATE TABLE Person (
+    UserID INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    Passcode VARCHAR (255) NOT NULL,
+    FirstName VARCHAR(255) NOT NULL,
+    LastName VARCHAR(255) NOT NULL,
+    DOB DATE,
+    Gender VARCHAR (255),
+    Address VARCHAR (255),
+    Email VARCHAR (255),
+    Phone VARCHAR (18),
+    City VARCHAR (255),
+    County VARCHAR (255),
+    ZIPCode VARCHAR (5),
+    TitleRole VARCHAR (255)
+);
+
+INSERT INTO Person VALUES('000001','Password1','John','Smith','1989-1-11','Male','123 STREETA','js@iu.edu','4900980837','GREENWICH','Hamilton','28394','citizen');
+INSERT INTO Person VALUES('000002','Password2','Bart','Allen','1990-6-6','Male','3 STREETE','ba@iu.edu','4637980837','NASHVILLE','Shelby','27384','citizen');
+INSERT INTO Person VALUES('000003','Password3','Adam','West','1989-7-9','Male','23 STREETD','aw@iu.edu','2234980837','ASHTON','Marion','18364','citizen');
+
+INSERT INTO Person VALUES('000004','Password4','Miguel','Smith','1990-5-6','Male','76 SUTHER BEND','ms@iu.edu','2900980837','INDIANAPOLIS','Johnson','81664','admin');
+INSERT INTO Person VALUES('000005','Password5','Garric','Smith','1991-1-8','Male','288 TREEHOUSE BEND','gs@iu.edu','4905598837','SOUTHBEND','Franklin','29174','admin');
+INSERT INTO Person VALUES('000006','Password6','Shruti','Smith','1992-7-1','Female','9878 GLOW PASS','as@iu.edu','5900980837','GREENVILLE','Bartholomew','28364','admin');
+
+
+/*-----*/

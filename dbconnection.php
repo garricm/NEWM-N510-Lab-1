@@ -1,8 +1,8 @@
 <?php
 $server = "localhost";
-$username = "username";
-$password = "password";
-$database = "fmh_db";
+$username = "root";
+$password = "";
+$database = "fmp_db";
 
 
 // Create connection

@@ -46,13 +46,34 @@ $sql_insert = "INSERT INTO pothole (`city`, `state`, `zipCode`, `description`, `
 <body>
     <nav class="red darken-4" role="navigation">
         <div class="nav-wrapper container">
-            <a id="logo-container" href="index.html" class="brand-logo left">Spothole</a>
+            <a id="logo-container" href="index.php" class="brand-logo left">Spothole</a>
             <ul class="right">
                 <li>
-                    <a href="index.html">
+                    <a href="index.php">
                         Home
                     </a>
                 </li>
+                <?php
+                if (isset($_SESSION['user_id'])) {
+                ?>
+                    <li>
+                        <a href="list-potholes.php">
+                            List
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <?php echo $_SESSION['user_id'] ?>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="logout.php">
+                            Logout
+                        </a>
+                    </li>
+                <?php
+                }
+                ?>
             </ul>
         </div>
     </nav>
