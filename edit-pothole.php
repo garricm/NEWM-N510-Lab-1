@@ -121,7 +121,7 @@ $sql = "update `pothole` set status='" . $status . "' where potholeId=" . $potho
         </div>
         <div class="footer-copyright">
             <div class="container">
-                Lab Assignment - NEWM-N-510 <a class="orange-text text-lighten-3" target="_blank" href="https://github.com/garricm/SPOTHOLE/">Source Code</a>
+                Lab Assignment - NEWM-N-510 <a class="orange-text text-lighten-3" target="_blank" href="https://github.com/garricm/SPOTHOLE/tree/garric-assignment-1">Source Code</a>
             </div>
         </div>
     </footer>

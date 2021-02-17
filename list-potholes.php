@@ -38,8 +38,8 @@ $result = mysqli_query($conn, $sql);
             <a id="logo-container" href="index.php" class="brand-logo left">Spothole</a>
             <ul class="right">
                 <li>
-                    <a href="index.php">
-                        Home
+                    <a href="report-pothole.php">
+                        Report Pothole
                     </a>
                 </li>
                 <?php
@@ -141,7 +141,7 @@ $result = mysqli_query($conn, $sql);
         </div>
         <div class="footer-copyright">
             <div class="container">
-                Lab Assignment - NEWM-N-510 <a class="orange-text text-lighten-3" target="_blank" href="https://github.com/garricm/SPOTHOLE/">Source Code</a>
+                Lab Assignment - NEWM-N-510 <a class="orange-text text-lighten-3" target="_blank" href="https://github.com/garricm/SPOTHOLE/tree/garric-assignment-1">Source Code</a>
             </div>
         </div>
     </footer>
