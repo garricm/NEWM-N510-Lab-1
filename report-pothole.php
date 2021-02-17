@@ -3,34 +3,8 @@
 
 <?php
 
-include 'dbconnection.php';
-if (empty($_POST)) {
-    // If form not submitted
-    header(`Location: /`);
-    exit();
-}
+session_start();
 
-// var_dump($_POST);
-$street_address = $_POST["street_address"];
-$city = $_POST["city"];
-$state = $_POST["state"];
-$zip_code = $_POST["zip_code"];
-$description = $_POST["description"];
-
-$first_name = $_POST["first_name"];
-$last_name = $_POST["last_name"];
-$email = $_POST["email"];
-$phone = $_POST["telephone"];
-
-$last_updated = date("Y-m-d H:i:s");
-
-if (isset($_POST[`isAnonymous`])) {
-    $isAnonymous = "Y";
-} else {
-    $isAnonymous = "N";
-}
-
-$sql_insert = "INSERT INTO pothole (`city`, `state`, `zipCode`, `description`, `firstName`, `lastName`, `email`, `phone`, `streetAddress`, `isAnonymous`, `status`, `lastUpdated`) VALUES ('" . $city . "','" . $state . "','" . $zip_code . "','" . $description . "','" . $first_name . "','" . $last_name . "','" . $email . "','" . $phone . "','" . $street_address . "','" . $isAnonymous . "','new','" . $last_updated . "');";
 ?>
 
 <head>
@@ -41,6 +15,16 @@ $sql_insert = "INSERT INTO pothole (`city`, `state`, `zipCode`, `description`, `
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection" />
     <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection" />
+    <style>
+        .section {
+            padding-top: 1rem;
+            padding-bottom: 1rem;
+            padding: 2.5rem;
+            margin-top: 1rem;
+            background: #fffffb;
+            border: 1px solid;
+        }
+    </style>
 </head>
 
 <body>
@@ -48,52 +32,135 @@ $sql_insert = "INSERT INTO pothole (`city`, `state`, `zipCode`, `description`, `
         <div class="nav-wrapper container">
             <a id="logo-container" href="index.php" class="brand-logo left">Spothole</a>
             <ul class="right">
-                <li>
-                    <a href="index.php">
-                        Home
-                    </a>
-                </li>
-                <?php
-                if (isset($_SESSION['user_id'])) {
-                ?>
-                    <li>
-                        <a href="list-potholes.php">
-                            List
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <?php echo $_SESSION['user_id'] ?>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="logout.php">
-                            Logout
-                        </a>
-                    </li>
-                <?php
-                }
-                ?>
+                <ul class="right">
+                    <?php
+                    if (isset($_SESSION['user_id'])) {
+                    ?>
+                        <li>
+                            <a href="list-potholes.php">
+                                List
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <?php echo $_SESSION['user_id'] ?>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="logout.php">
+                                Logout
+                            </a>
+                        </li>
+                    <?php
+                    } else {
+                    ?>
+                        <li>
+                            <a href="index.php">
+                                Login
+                            </a>
+                        </li>
+                    <?php
+                    }
+                    ?>
+                </ul>
             </ul>
         </div>
     </nav>
 
 
     <div class="container">
-        <div class="section" style="min-height: 300px;">
+        <div class="section">
             <div>
-                <?php
-                if ($conn->query($sql_insert) === TRUE) {
-                ?>
-                    <h3 class="header center">Pothole record created successfully ..</h3>
-                <?php
-                } else {
-                    echo "Error: " . $sql_insert . "<br>" . $conn->error;
-                }
-                $conn->close();
-                ?>
-
+                <h3 class="header center">Report a Pothole</h3>
             </div>
+            <div class="row">
+                <form class="col s12" action="report.php" method="POST">
+                    <!-- Pothole Location -->
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <i class="material-icons prefix">description</i>
+                            <textarea name="street_address" required="" aria-required="true" id="street_address" class="materialize-textarea" data-length="100"></textarea>
+                            <label for="street_address">Street Address</label>
+                        </div>
+                        <div class="input-field col s12 m4">
+                            <i class="material-icons prefix">location_city</i>
+                            <input name="city" required="" aria-required="true" id="city" type="text" class="validate">
+                            <label for="city">City</label>
+                        </div>
+                        <!-- TODO: Change to Dropdown -->
+                        <div class="input-field col s12 m4">
+                            <i class="material-icons prefix">my_location</i>
+                            <input name="state" required="" aria-required="true" id="state" type="text" class="validate">
+                            <label for="state">State</label>
+                        </div>
+                        <div class="input-field col s12 m4">
+                            <i class="material-icons prefix">location_on</i>
+                            <input name="zip_code" required="" aria-required="true" id="zip_code" type="tel" class="validate">
+                            <label for="zip_code">Zip Code</label>
+                        </div>
+                    </div>
+                    <!-- Pothole Description 18665922812 -->
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <i class="material-icons prefix">description</i>
+                            <textarea name="description" id="description" class="materialize-textarea" data-length="256"></textarea>
+                            <label for="description">Description</label>
+                        </div>
+                    </div>
+                    <!-- Pothole Images 
+
+                    <div class="row">
+                        <div class="file-field input-field col s12">
+                            <div class="btn pothole-image-btn">
+                                <span>Images</span>
+                                <input type="file" multiple>
+                            </div>
+                            <div class="file-path-wrapper">
+                                <input name="images" class="file-path validate" type="text"
+                                    placeholder="Upload one or more files">
+                            </div>
+                        </div>
+                    </div> -->
+                    <!-- User Info -->
+                    <div id="user-info">
+                        <div class="row">
+                            <div class="input-field col s12 m6">
+                                <i class="material-icons prefix">account_circle</i>
+                                <input name="first_name" id="first_name" type="text" class="validate">
+                                <label for="first_name">First Name</label>
+                            </div>
+                            <div class="input-field col s12 m6">
+                                <i class="material-icons prefix">account_circle</i>
+                                <input name="last_name" id="last_name" type="text" class="validate">
+                                <label for="last_name">Last Name</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s12 m6">
+                                <i class="material-icons prefix">email</i>
+                                <input name="email" id="email" type="email" class="validate">
+                                <label for="email">Email</label>
+                            </div>
+                            <div class="input-field col s12 m6">
+                                <i class="material-icons prefix">phone</i>
+                                <input name="telephone" id="telephone" type="tel" class="validate">
+                                <label for="telephone">Telephone</label>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Buttons -->
+                    <div class="row">
+                        <label style="padding-left: 15px;">
+                            <input type="checkbox" name="isAnonymous" id="isAnonymous" value="anonymous" class="filled-in" />
+                            <span>Report Anonymously</span>
+                        </label>
+                        <button class="btn waves-effect waves-light submit-btn right" type="submit" name="action">Submit
+                            <i class="material-icons right">send</i>
+                        </button>
+                    </div>
+                </form>
+            </div>
+
         </div>
         <br><br>
     </div>
@@ -127,7 +194,7 @@ $sql_insert = "INSERT INTO pothole (`city`, `state`, `zipCode`, `description`, `
         </div>
         <div class="footer-copyright">
             <div class="container">
-                Lab Assignment - NEWM-N-510 <a class="orange-text text-lighten-3" target="_blank" href="https://github.com/garricm/SPOTHOLE/">Source Code</a>
+                Lab Assignment - NEWM-N-510 <a class="orange-text text-lighten-3" target="_blank" href="https://github.com/garricm/SPOTHOLE/tree/garric-assignment-1">Source Code</a>
             </div>
         </div>
     </footer>

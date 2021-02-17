@@ -24,8 +24,10 @@ if (!empty($_POST)) {
             // Login Successfull
             $_SESSION['user_id'] = $username;
             header("Location: list-potholes.php");
+            mysqli_close($conn);
         } else {
             $msg = "Invalid Credentials";
+            mysqli_close($conn);
         }
     }
 }
@@ -76,9 +78,9 @@ if (!empty($_POST)) {
                 <div class="card-image">
                     <span class="card-header"></span>
                     <span>
-                        <a class="btn-flat waves-effect" style="float: left; color: #000;" href="report-pothole.html">Report
+                        <a class="btn-flat waves-effect" style="float: left; color: #000;" href="report-pothole.php">Report
                             Pothole</a>
-                        <a class="btn-flat waves-effect" style="float: left; color: #000;" href="create-user.html">Create
+                        <a class="btn-flat waves-effect" style="float: left; color: #000;" href="create-user.php">Create
                             User</a>
                     </span>
                     <br><br>

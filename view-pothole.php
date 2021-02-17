@@ -3,6 +3,8 @@
 
 <?php
 
+session_start();
+
 include 'dbconnection.php';
 $potholeId = $_GET["id"];
 
@@ -27,10 +29,31 @@ $result = mysqli_query($conn, $sql);
             <a id="logo-container" href="index.php" class="brand-logo left">Spothole</a>
             <ul class="right">
                 <li>
-                    <a href="index.php">
-                        Home
+                    <a href="report-pothole.php">
+                        Report Pothole
                     </a>
                 </li>
+                <?php
+                if (isset($_SESSION['user_id'])) {
+                ?>
+                    <li>
+                        <a href="list-potholes.php">
+                            List
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <?php echo $_SESSION['user_id'] ?>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="logout.php">
+                            Logout
+                        </a>
+                    </li>
+                <?php
+                }
+                ?>
             </ul>
         </div>
     </nav>
@@ -61,11 +84,21 @@ $result = mysqli_query($conn, $sql);
                     <div class="row">
                         <form class="col s12" action="edit-pothole.php" method="POST">
                             <input type="hidden" id="potholeId" name="potholeId" value="<?php echo $potholeId ?>">
+                            <div class="row">
+                                <div class="input-field col s12">
+                                    <select name="status" id="status-dropdown">
+                                        <option value="new" <?php if ($status == "new") echo "selected" ?>>New</option>
+                                        <option value="in-progress" <?php if ($status == "in-progress") echo "selected" ?>>In-Progress</option>
+                                        <option value="complete" <?php if ($status == "complete") echo "selected" ?>>Complete</option>
+                                    </select>
+                                    <label>Pothole Status</label>
+                                </div>
+                            </div>
                             <!-- Pothole Location -->
                             <div class="row">
                                 <div class="input-field col s12">
                                     <i class="material-icons prefix">description</i>
-                                    <textarea name="street_address" value="<?php echo $street_address ?>" required="" aria-required="true" id="street_address" class="materialize-textarea" data-length="100" disabled></textarea>
+                                    <textarea name="street_address" placeholder="<?php echo $street_address ?>" required="" aria-required="true" id="street_address" class="materialize-textarea" data-length="100" disabled></textarea>
                                     <label for="street_address">Street Address</label>
                                 </div>
                                 <div class="input-field col s12 m4">
@@ -85,14 +118,14 @@ $result = mysqli_query($conn, $sql);
                                     <label for="zip_code">Zip Code</label>
                                 </div>
                             </div>
-                            <!-- Pothole Description 
+                            <!-- Pothole Description -->
                             <div class="row">
                                 <div class="input-field col s12">
                                     <i class="material-icons prefix">description</i>
-                                    <textarea name="description" id="description" value="<?php echo $description ?>" class="materialize-textarea" data-length="256" disabled></textarea>
+                                    <textarea name="description" id="description" placeholder="<?php echo $description ?>" class="materialize-textarea" data-length="256" disabled></textarea>
                                     <label for="description">Description</label>
                                 </div>
-                            </div>-->
+                            </div>
                             <?php if ($isAnonymous != "Y") { ?>
                                 <!-- User Info -->
                                 <div id="user-info">
@@ -120,25 +153,12 @@ $result = mysqli_query($conn, $sql);
                                             <label for="telephone">Telephone</label>
                                         </div>
                                     </div>
-                                    <div class="input-field col s12">
-                                        <select name="status" id="status-dropdown">
-                                            <option value="new" <?php if ($status == "new") echo "selected" ?>>New</option>
-                                            <option value="in-progress" <?php if ($status == "in-progress") echo "selected" ?>>In-Progress</option>
-                                            <option value="complete" <?php if ($status == "complete") echo "selected" ?>>Complete
-                                            </option>
-                                        </select>
-                                        <label>Pothole Status</label>
-                                    </div>
                                 </div>
                             <?php
                             }
                             ?>
                             <!-- Buttons -->
                             <div class="row">
-                                <!-- <label style="padding-left: 15px;">
-                                    <input type="checkbox" name="isAnonymous" id="isAnonymous" value="anonymous" class="filled-in" />
-                                    <span>Report Anonymously</span>
-                                </label> -->
                                 <button class="btn waves-effect waves-light submit-btn right" type="submit" name="action">Submit
                                     <i class="material-icons right">send</i>
                                 </button>
@@ -155,11 +175,14 @@ $result = mysqli_query($conn, $sql);
                 <!-- Project Description -->
                 <div class="col l8 s12">
                     <h5 class="white-text">About</h5>
-                    <p class="grey-text text-lighten-4">This is a Web database application that will allow citizens to
+                    <p class="grey-text text-lighten-4">This is a Web database application that will allow citizens
+                        to
                         report potholes within their local community so that they can be fixed. The application
-                        allows users to submit information about the pothole including their name, phone number and/or
+                        allows users to submit information about the pothole including their name, phone number
+                        and/or
                         email, the location of the pothole, and a description to provide additional
-                        information about the location and/or pothole. The user can also report the pothole anonymously.
+                        information about the location and/or pothole. The user can also report the pothole
+                        anonymously.
                     </p>
 
 
@@ -170,7 +193,8 @@ $result = mysqli_query($conn, $sql);
                     <ul>
                         <li><a class="orange-text text-lighten-3" target="_blank" href="https://www.linkedin.com/in/miguel-angel-llamas-estrada">Miguel Angel Llamas
                                 Estrada</a></li>
-                        <li><a class="orange-text text-lighten-3" target="_blank" href="#!">Shruti Devulapalli</a></li>
+                        <li><a class="orange-text text-lighten-3" target="_blank" href="#!">Shruti Devulapalli</a>
+                        </li>
                         <li><a class="orange-text text-lighten-3" target="_blank" href="https://www.linkedin.com/in/garric/">Garric Mathias</a></li>
                     </ul>
                 </div>
@@ -178,7 +202,7 @@ $result = mysqli_query($conn, $sql);
         </div>
         <div class="footer-copyright">
             <div class="container">
-                Lab Assignment - NEWM-N-510 <a class="orange-text text-lighten-3" target="_blank" href="https://github.com/garricm/SPOTHOLE/">Source Code</a>
+                Lab Assignment - NEWM-N-510 <a class="orange-text text-lighten-3" target="_blank" href="https://github.com/garricm/SPOTHOLE/tree/garric-assignment-1">Source Code</a>
             </div>
         </div>
     </footer>
