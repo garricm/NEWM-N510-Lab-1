@@ -10,21 +10,24 @@ include 'dbconnection.php';
 
 
 if (!empty($_POST)) {
-    if (isset($_POST['username']) && isset($_POST['password'])) {
+    if (isset($_POST['username']) && isset($_POST['password']) && isset($_POST['firstName']) && isset($_POST['lastName']) && isset($_POST['telephone'])) {
         $username = $_POST['username'];
         $password = $_POST['password'];
+        $firstName = $_POST['firstName'];
+        $lastName = $_POST['lastName'];
+        $telephone = $_POST['telephone'];
 
         // Generate SHA-256 Hash
         $password = hash('sha256', $password);
 
         // Check if user exists
-        $sql = "select * from `users` where username ='" . $username . "' and password = '" . $password . "' and status = 'ACTIVE';";
+        $sql = "select * from `users` where username ='" . $username . "' and status = 'ACTIVE';";
         $result = mysqli_query($conn, $sql);
         $num_rows = mysqli_num_rows($result);
 
         if ($num_rows == 1) {
             // User already exists
-            $errorMsg = "Username '" . $username . "' already exists";
+            $errorMsg = "Email '" . $username . "' already registered";
         } else {
             // New User
             $sql = "INSERT INTO `users` (`username`, `password`, `status`) VALUES ('" . $username . "', '" . $password . "', 'ACTIVE');";
@@ -82,22 +85,40 @@ if (!empty($_POST)) {
 
 <body>
     <div class="valign-wrapper row login-box">
-        <div class="col card hoverable s10 pull-s1 m6 pull-m3 l4 pull-l4">
+        <div class="col card hoverable s10 pull-s1 m8 pull-m2 l6 pull-l3">
             <form method="POST" action="create-user.php" id="create-user-form">
                 <div class="card-content">
                     <span class="card-title">SpotHole - Create User</span>
                     <div class="row">
+                        <div class="input-field col s12 m6">
+                            <i class="material-icons prefix">account_circle</i>
+                            <input name="firstName" id="firstName" type="text" class="validate">
+                            <label for="firstName">First Name</label>
+                        </div>
+                        <div class="input-field col s12 m6">
+                            <i class="material-icons prefix">account_circle</i>
+                            <input name="lastName" id="lastName" type="text" class="validate">
+                            <label for="lastName">Last Name</label>
+                        </div>
                         <div class="input-field col s12">
-                            <label for="email">Username</label>
+                            <i class="material-icons prefix">phone</i>
+                            <input name="telephone" id="telephone" type="tel" class="validate">
+                            <label for="telephone">Telephone</label>
+                        </div>
+                        <div class="input-field col s12">
+                            <i class="material-icons prefix">email</i>
                             <input type="email" class="validate" name="username" id="username" />
+                            <label for="email">Email</label>
                         </div>
                         <div class="input-field col s12">
-                            <label for="password">Password</label>
+                            <i class="material-icons prefix">enhanced_encryption</i>
                             <input type="password" class="validate" name="password" id="password" />
+                            <label for="password">Password</label>
                         </div>
                         <div class="input-field col s12">
-                            <label for="password">Re-enter Password</label>
+                            <i class="material-icons prefix">enhanced_encryption</i>
                             <input type="password" class="validate" name="password2" id="password2" />
+                            <label for="password2">Re-enter Password</label>
                         </div>
                         <?php if ($errorMsg != "") { ?>
                             <div class="col s12" style="margin-bottom: -20px;">
@@ -134,7 +155,25 @@ if (!empty($_POST)) {
         $('.create-user-btn').on('click', (e) => {
             e.preventDefault();
 
-            if ($('#username').val() == "") {
+            if ($('#firstName').val() == "") {
+                M.toast({
+                    html: 'Enter First Name'
+                });
+
+                $('#firstName').focus();
+            } else if ($('#lastName').val() == "") {
+                M.toast({
+                    html: 'Enter Last Name'
+                });
+
+                $('#lastName').focus();
+            } else if ($('#telephone').val() == "") {
+                M.toast({
+                    html: 'Enter Telephone'
+                });
+
+                $('#telephone').focus();
+            } else if ($('#username').val() == "") {
                 M.toast({
                     html: 'Enter Email'
                 });
