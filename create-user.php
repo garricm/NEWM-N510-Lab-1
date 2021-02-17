@@ -3,6 +3,12 @@
 
 <?php
 
+$errorMsg = "";
+$successMsg = "";
+
+include 'dbconnection.php';
+
+
 if (!empty($_POST)) {
     if (isset($_POST['username']) && isset($_POST['password'])) {
         $username = $_POST['username'];
@@ -11,18 +17,28 @@ if (!empty($_POST)) {
         // Generate SHA-256 Hash
         $password = hash('sha256', $password);
 
-        $sql = "INSERT INTO `users`(`username`, `password`, `status`) VALUES ('$username', '$password', 'ACTIVE');";
+        // Check if user exists
         $sql = "select * from `users` where username ='" . $username . "' and password = '" . $password . "' and status = 'ACTIVE';";
         $result = mysqli_query($conn, $sql);
         $num_rows = mysqli_num_rows($result);
 
         if ($num_rows == 1) {
-            // Login Successfull
-            $_SESSION['user_id'] = $username;
-            header("Location: list-potholes.php");
+            // User already exists
+            $errorMsg = "Username '" . $username . "' already exists";
         } else {
-            $msg = "Invalid Credentials";
+            // New User
+            $sql = "INSERT INTO `users` (`username`, `password`, `status`) VALUES ('" . $username . "', '" . $password . "', 'ACTIVE');";
+
+            if ($conn->query($sql) === TRUE) {
+                $successMsg = "User created succesfully";
+            } else {
+                $errorMsg = "Error: " . $sql . "<br>" . $conn->error;
+            }
         }
+
+
+
+        $conn->close();
     }
 }
 
@@ -46,12 +62,20 @@ if (!empty($_POST)) {
             background-color: #e53935;
         }
 
-        .login-btn input {
+        .create-user-btn input {
             color: #FFF !important;
         }
 
         .card-title {
             text-align: center;
+        }
+
+        .error-msg {
+            color: #e53935;
+        }
+
+        .success-msg {
+            color: #09c117;
         }
     </style>
 </head>
@@ -59,7 +83,7 @@ if (!empty($_POST)) {
 <body>
     <div class="valign-wrapper row login-box">
         <div class="col card hoverable s10 pull-s1 m6 pull-m3 l4 pull-l4">
-            <form method="POST" action="login.php">
+            <form method="POST" action="create-user.php" id="create-user-form">
                 <div class="card-content">
                     <span class="card-title">SpotHole - Create User</span>
                     <div class="row">
@@ -75,11 +99,22 @@ if (!empty($_POST)) {
                             <label for="password">Re-enter Password</label>
                             <input type="password" class="validate" name="password2" id="password2" />
                         </div>
+                        <?php if ($errorMsg != "") { ?>
+                            <div class="col s12" style="margin-bottom: -20px;">
+                                <p class="error-msg"><?php echo $errorMsg ?></p>
+                            </div>
+                        <?php } ?>
+                        <?php if ($successMsg != "") { ?>
+                            <div class="col s12" style="margin-bottom: -20px;">
+                                <p class="success-msg"><?php echo $successMsg ?></p>
+                            </div>
+                        <?php } ?>
                     </div>
                 </div>
                 <div class="card-action right-align">
+                    <a class="btn-flat waves-effect" style="float: left; color: #000;" href="index.php">Login</a>
                     <input type="reset" id="reset" class="btn-flat grey-text waves-effect">
-                    <input type="submit" class="btn red darken-4 waves-effect waves-light login-btn" value="Create User">
+                    <button class="btn red darken-4 waves-effect waves-light create-user-btn">Create User</button>
                 </div>
             </form>
         </div>
@@ -94,6 +129,39 @@ if (!empty($_POST)) {
     <script>
         $("#reset").on("click", function() {
             $('label').removeClass('active');
+        });
+
+        $('.create-user-btn').on('click', (e) => {
+            e.preventDefault();
+
+            if ($('#username').val() == "") {
+                M.toast({
+                    html: 'Enter Email'
+                });
+
+                $('#username').focus();
+            } else if ($('#password').val() == "") {
+                M.toast({
+                    html: 'Enter Password'
+                });
+
+                $('#password').focus();
+            } else if ($('#password2').val() == "") {
+                M.toast({
+                    html: 'Re-Enter Password'
+                });
+
+                $('#password2').focus();
+            } else if ($('#password').val() != $('#password2').val()) {
+                M.toast({
+                    html: 'Passwords do not match'
+                });
+
+                $('#password2').focus();
+            } else {
+                console.log("Submitting form");
+                $('#create-user-form').submit();
+            }
         });
     </script>
 
