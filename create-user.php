@@ -30,7 +30,7 @@ if (!empty($_POST)) {
             $errorMsg = "Email '" . $username . "' already registered";
         } else {
             // New User
-            $sql = "INSERT INTO `users` (`username`, `password`, `status`) VALUES ('" . $username . "', '" . $password . "', 'ACTIVE');";
+            $sql = "INSERT INTO `users` (`firstName`, `lastName`, `telephone`, `username`, `password`, `status`) VALUES ('" . $firstName . "', '" . $lastName . "', '" . $telephone . "', '" . $username . "', '" . $password . "', 'ACTIVE');";
 
             if ($conn->query($sql) === TRUE) {
                 $successMsg = "User created succesfully";
@@ -50,7 +50,7 @@ if (!empty($_POST)) {
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0" />
-    <title>SPOTHOLE - Create Users</title>
+    <title>SPOTHOLE - Create User</title>
 
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection" />

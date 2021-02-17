@@ -10,7 +10,7 @@ session_start();
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0" />
-    <title>SPOTHOLE</title>
+    <title>SPOTHOLE - Report Pothole</title>
 
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection" />
@@ -30,7 +30,7 @@ session_start();
 <body>
     <nav class="red darken-4" role="navigation">
         <div class="nav-wrapper container">
-            <a id="logo-container" href="index.php" class="brand-logo left">Spothole</a>
+            <a id="logo-container" href="#" class="brand-logo left">Spothole</a>
             <ul class="right">
                 <ul class="right">
                     <?php

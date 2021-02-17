@@ -21,7 +21,7 @@ $sql = "update `pothole` set status='" . $status . "' where potholeId=" . $potho
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0" />
-    <title>SPOTHOLE</title>
+    <title>SPOTHOLE - Edit Pothole</title>
 
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection" />
@@ -43,7 +43,7 @@ $sql = "update `pothole` set status='" . $status . "' where potholeId=" . $potho
 <body>
     <nav class="red darken-4" role="navigation">
         <div class="nav-wrapper container">
-            <a id="logo-container" href="index.php" class="brand-logo left">Spothole</a>
+            <a id="logo-container" href="#" class="brand-logo left">Spothole</a>
             <ul class="right">
                 <li>
                     <a href="list-potholes.php">

@@ -18,7 +18,7 @@ $result = mysqli_query($conn, $sql);
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0" />
-    <title>SPOTHOLE</title>
+    <title>SPOTHOLE - List Pothole/title>
 
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection" />
@@ -35,7 +35,7 @@ $result = mysqli_query($conn, $sql);
 <body>
     <nav class="red darken-4" role="navigation">
         <div class="nav-wrapper container">
-            <a id="logo-container" href="index.php" class="brand-logo left">Spothole</a>
+            <a id="logo-container" href="#" class="brand-logo left">Spothole</a>
             <ul class="right">
                 <li>
                     <a href="report-pothole.php">
